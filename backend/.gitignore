@@ -1,0 +1,9 @@
+# Excluded files: 
+#   - node_modules/: more efficient data transfer ("npm install" already installs required modules)
+#   - .env: for personalized environment variables
+
+# JS libraries
+node_modules/
+
+# Environment variables
+.env
