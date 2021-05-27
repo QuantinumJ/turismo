@@ -9,7 +9,7 @@ const auth = require('../middlewares/auth.middleware');
 //Page/subpages methods
 //route.post('/add', userController.create_user_post);
 
-route.get('/all', /*auth.verifyAdmin,*/ userController.user_get);
+route.get('/all', auth.verifyAdmin, userController.user_get);
 
 // route.get('/current', auth.verifyLogin, userController.user_current_get);
 
