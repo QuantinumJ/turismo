@@ -13,11 +13,11 @@ const moment = require('moment');
  * @param {Response} res 
  */
 exports.create_user_post = async(req, res) => {
-
+    console.log(req)
     if (req.body.password === undefined) req.body.password = generatePassword()
 
     let userData = {
-        email: req.body.email.toLowerCase(),
+        email: req.body.email,
         nombre: req.body.nombre,
         password: req.body.password,
         role: req.body.role

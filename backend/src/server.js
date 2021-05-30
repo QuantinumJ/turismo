@@ -6,8 +6,8 @@ const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const router = require("./routes/index");
+var cors = require("cors");
 
-const { ENGINE_METHOD_ALL } = require("constants");
 
 
 
@@ -24,21 +24,7 @@ const server = {
         app.use(bodyparser.urlencoded({ extended: false }));
         app.disable("x-powered-by");
         app.use(cookieParser());
-
-
-
-
-        // error handler
-        app.use(function(err, req, res, next) {
-            // set locals, only providing error in development
-            res.locals.message = err.message;
-            res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-            // render the error page
-            res.status(err.status || 500);
-            res.render('error');
-        });
-
+        app.use(cors());
 
         //Test
         if (process.env.NODE_ENV !== 'test')

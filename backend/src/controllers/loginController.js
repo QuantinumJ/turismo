@@ -13,27 +13,26 @@ const loginUser = async(req, res) => {
 
     const body = req.body;
     const cookies = req.cookies;
-
     try {
         if (cookies) {
             if (cookies.user)
                 throw ({ status: 403, err: "Already logged" })
         }
-        const user = await User.findOne({ email: body.email.toLowerCase() });
+        const user = await User.findOne({ email: body.email });
 
         if (!user || user.deleted_at || !bcrypt.compareSync(body.password, user.password) || !user.checked) {
             throw { login: false, err: "You user or your password is wrong" };
         } else {
-            //let csrfToken = req.csrfToken();
-            let expiry = new moment().add(Number(process.env.CAD_TOKEN[0]) + 1, 'h').toISOString();
 
-            const token = await createToken(user, user.role /*, csrfToken*/ );
-            const httpOnlyCheck = user.role !== 'ADMIN' ? true : false
-            const secureCheck = process.env.NODE_ENV !== "dev" ? true : false
-            res.cookie('sessionId', token, { httpOnly: httpOnlyCheck, secure: secureCheck });
-            res.cookie('user', user._id.toString(), { httpOnly: httpOnlyCheck, secure: secureCheck });
-            res.cookie('expiry', expiry, { httpOnly: httpOnlyCheck, secure: secureCheck })
-                //res.cookie('XSRF-TOKEN', csrfToken, { httpOnly: false, secure: false });
+            // let expiry = new moment().add(Number(process.env.CAD_TOKEN[0]) + 1, 'h').toISOString();
+
+            // const token = await createToken(user, user.role);
+            // const httpOnlyCheck = user.role !== 'ADMIN' ? true : false
+            // const secureCheck = process.env.NODE_ENV !== "dev" ? true : false
+            // res.cookie('sessionId', token, { httpOnly: httpOnlyCheck, secure: secureCheck });
+            // res.cookie('user', user._id.toString(), { httpOnly: httpOnlyCheck, secure: secureCheck });
+            // res.cookie('expiry', expiry, { httpOnly: httpOnlyCheck, secure: secureCheck })
+            //     //res.cookie('XSRF-TOKEN', csrfToken, { httpOnly: false, secure: false });
             res.status(200).json({ login: true });
 
 
