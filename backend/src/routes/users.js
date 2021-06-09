@@ -9,7 +9,7 @@ const auth = require('../middlewares/auth.middleware'); // Importacion del Contr
 //Page/subpages methods
 route.post('/add', userController.create_user_post); //Ruta para crear Usuario 
 
-route.get('/all', /*auth.verifyAdmin,*/ userController.user_get); // Ruta para ver los usuarios
+route.get('/all', auth.verifyAdmin, userController.user_get); // Ruta para ver los usuarios
 
 route.get('/current', auth.verifyLogin, userController.user_current_get); // Ruta Para ver a si mismo
 
@@ -21,7 +21,7 @@ route.put('/remove/:id', auth.verifyOwn, userController.user_remove_put); // Eli
 
 route.delete('/delete/:id', auth.verifyAdmin, userController.user_destroy_delete); //Eliminacion completa del Usuario
 
-route.get('/confirm/:token', auth.verifyAdmin, userController.user_confirm_get); // Confirmacion del usuario "Cheked = true"
+route.get('/confirm/:token', auth.verifyOwn, userController.user_confirm_get); // Confirmacion del usuario "Cheked = true"
 
 //Router export
 module.exports = route;

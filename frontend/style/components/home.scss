@@ -1,4 +1,22 @@
 #home {
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #2eade3;
+        border: 1px solid rgb(252, 252, 253);
+    }
+    li {
+        float: left;
+    }
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
     a:-webkit-any-link {
         text-decoration: none;
     }
@@ -7,11 +25,11 @@
         margin-top: 1em;
         margin-bottom: 1em;
         .inputBusqueda {
-            color: rgba(0, 0, 0, 0.9);
-            width: 90%;
+            color: rgba(0, 0, 0, 0.616);
+            width: 40%;
             margin: auto;
-            border: 1px solid #ccc;
-            border-color: #ccc;
+            border: 1px solid rgb(5, 33, 94);
+            border-color: rgb(11, 7, 252);
             &:focus {
                 border: 1px solid #ccc;
             }
@@ -112,4 +130,5 @@
         transform: rotateX(0);
         opacity: 0.9;
     }
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }

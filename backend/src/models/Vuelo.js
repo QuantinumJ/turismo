@@ -29,6 +29,9 @@ const VueloSchema = Schema({
         type: Number,
         required: true
     },
+    imagen: {
+        type: Buffer
+    },
     fecha_salida: {
         type: Date,
         required: true

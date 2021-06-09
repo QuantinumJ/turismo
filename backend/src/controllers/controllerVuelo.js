@@ -15,7 +15,8 @@ exports.create_vuelo_post = async(req, res) => {
         origen: req.body.origen,
         precio: req.body.precio,
         fecha_salida: req.body.fecha_salida,
-        fecha_llegada: req.body.fecha_llegada
+        fecha_llegada: req.body.fecha_llegada,
+        imagen: req.files.imagen
     }
 
     try {
@@ -45,7 +46,7 @@ exports.vuelo_all_get = async(req, res) => {
         var search = req.query.search
         if (search != "") {
             //const $regex = escapeStringRegexp(search);
-            // console.log("PASO ша")
+
             const vuelo = await Vuelo.find({ disponible: true, $or: [{ destino: { $regex: search, "$options": "i" } }, { origen: { $regex: search, "$options": "i" } }] });
             if (vuelo.length > 1) res.status(200).json(vuelo);
             // for (let vuelos = 0; vuelos < array.length; vuelos++) {
@@ -54,9 +55,7 @@ exports.vuelo_all_get = async(req, res) => {
             // }
             else res.status(204).json("Exito, pero no hay datos a mostrar");
         } else {
-            console.log("PASO ESLSE")
             const vuelo = await Vuelo.find({ disponible: true });
-
             if (vuelo.length > 1) res.status(200).json(vuelo);
             else res.status(204).json("Exito, pero no hay datos a mostrar");
         }

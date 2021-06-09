@@ -27,13 +27,13 @@ const UserSchema = Schema({
     },
     role: {
         type: String,
-        required: true,
+        required: false,
         enum: validRole
     },
     checked: {
         type: Boolean,
         required: true,
-        default: false
+        default: true //De momento en true
     },
     etoken: {
         type: String

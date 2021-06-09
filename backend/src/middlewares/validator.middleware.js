@@ -29,6 +29,7 @@ const validateGeneric = {
     origen: (origen) => { return validator.isEmpty(origen) === false && validator.matches(origen, /^[a-zA-Z\s\ñ\Ñ\á\Á\é\É\í\Í\ó\Ó\ú\Ú]+$/) },
     fecha_salida: (fecha_salida) => { return validator.isEmpty(fecha_salida) === false && validator.matches(fecha_salida, /^\d\d\d\d-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])+$/) },
     fecha_llegada: (fecha_salida) => { return validator.isEmpty(fecha_salida) === false && validator.matches(fecha_salida, /^\d\d\d\d-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])+$/) },
+
 }
 
 /**

@@ -10,7 +10,7 @@ route.post('/add', controllerVuelo.create_vuelo_post); //Ruta para crear Usuario
 
 route.get('/all', /*auth.verifyAdmin,*/ controllerVuelo.vuelo_all_get); // Ruta para ver los usuarios
 
-// route.get('/current', auth.verifyLogin, controllerVuelo.user_current_get); // Ruta Para ver a si mismo
+//route.get('/current', auth.verifyLogin, controllerVuelo.user_current_get); // Ruta Para ver a si mismo
 
 route.get('/:id', controllerVuelo.vuelo_id_get); // Ruta para buscar por id Usuario
 

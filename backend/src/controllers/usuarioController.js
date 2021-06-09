@@ -17,10 +17,9 @@ exports.create_user_post = async(req, res) => {
     if (req.body.password === undefined) req.body.password = generatePassword()
 
     let userData = {
-        email: req.body.email,
         nombre: req.body.nombre,
-        password: req.body.password,
-        role: req.body.role
+        email: req.body.email,
+        password: req.body.password
     }
 
     try {

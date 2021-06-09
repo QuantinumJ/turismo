@@ -24,16 +24,16 @@ const loginUser = async(req, res) => {
             throw { login: false, err: "You user or your password is wrong" };
         } else {
 
-            // let expiry = new moment().add(Number(process.env.CAD_TOKEN[0]) + 1, 'h').toISOString();
+            let expiry = new moment().add(Number(process.env.CAD_TOKEN[0]) + 1, 'h').toISOString();
 
-            // const token = await createToken(user, user.role);
-            // const httpOnlyCheck = user.role !== 'ADMIN' ? true : false
-            // const secureCheck = process.env.NODE_ENV !== "dev" ? true : false
-            // res.cookie('sessionId', token, { httpOnly: httpOnlyCheck, secure: secureCheck });
-            // res.cookie('user', user._id.toString(), { httpOnly: httpOnlyCheck, secure: secureCheck });
-            // res.cookie('expiry', expiry, { httpOnly: httpOnlyCheck, secure: secureCheck })
-            //     //res.cookie('XSRF-TOKEN', csrfToken, { httpOnly: false, secure: false });
-            res.status(200).json({ login: true });
+            const token = await createToken(user, user.role);
+            const httpOnlyCheck = user.role !== 'ADMIN' ? true : false
+            const secureCheck = process.env.NODE_ENV !== "dev" ? true : false
+            res.cookie('sessionId', token, { httpOnly: httpOnlyCheck, secure: secureCheck });
+            res.cookie('user', user._id.toString(), { httpOnly: httpOnlyCheck, secure: secureCheck });
+            res.cookie('expiry', expiry, { httpOnly: httpOnlyCheck, secure: secureCheck }) /
+                 res.cookie('XSRF-TOKEN', csrfToken, { httpOnly: false, secure: false });
+                res.status(200).json({ login: true });
 
 
         }
