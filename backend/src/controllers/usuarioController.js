@@ -131,7 +131,6 @@ exports.user_update_put = async(req, res) => {
         nombre: body.nombre,
         email: body.email,
         password: body.password,
-        role: body.role
     }
 
     try {

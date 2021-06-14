@@ -5,6 +5,7 @@ import Login from './components/Login.vue'
 import Reserva from './components/Reserva.vue'
 import SignUp from './components/SignUp.vue'
 
+
 Vue.use(Router)
 
 var router = new Router({
@@ -42,6 +43,7 @@ var router = new Router({
                 //requiresAuth: true
             }
         }
+
     ]
 })
 

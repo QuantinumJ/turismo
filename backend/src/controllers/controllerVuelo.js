@@ -15,8 +15,7 @@ exports.create_vuelo_post = async(req, res) => {
         origen: req.body.origen,
         precio: req.body.precio,
         fecha_salida: req.body.fecha_salida,
-        fecha_llegada: req.body.fecha_llegada,
-        imagen: req.files.imagen
+        fecha_llegada: req.body.fecha_llegada
     }
 
     try {
