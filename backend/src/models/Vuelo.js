@@ -8,37 +8,35 @@ const validRole = {
 };
 
 //User mongoose schema 
-const UserSchema = Schema({
-    email: {
-        type: String,
-        require: true,
-        maxlength: 255,
-        unique: true
-    },
-    password: {
-        type: String,
-        maxlength: 1024,
-        required: true
-    },
-    nombre: {
-        type: String,
-        maxlength: 255,
-        required: true
-    },
-    role: {
-        type: String,
-        required: false,
-        enum: validRole
-    },
-    checked: {
+const VueloSchema = Schema({
+
+    disponible: {
         type: Boolean,
         required: true,
-        default: true //De momento en true
+        default: true
     },
-    etoken: {
-        type: String
+    destino: {
+        type: String,
+        maxlength: 255,
+        required: true
     },
-    created_at: {
+    origen: {
+        type: String,
+        maxlength: 255,
+        required: true
+    },
+    precio: {
+        type: Number,
+        required: true
+    },
+    imagen: {
+        type: Buffer
+    },
+    fecha_salida: {
+        type: Date,
+        required: true
+    },
+    fecha_llegada: {
         type: Date,
         required: true
     },
@@ -55,4 +53,4 @@ const UserSchema = Schema({
 
 
 //Export model
-module.exports = model('User', UserSchema);
+module.exports = model('Vuelo', VueloSchema);

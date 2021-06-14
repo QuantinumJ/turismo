@@ -13,14 +13,13 @@ const moment = require('moment');
  * @param {Response} res 
  */
 exports.create_user_post = async(req, res) => {
-
+    console.log(req)
     if (req.body.password === undefined) req.body.password = generatePassword()
 
     let userData = {
-        email: req.body.email.toLowerCase(),
         nombre: req.body.nombre,
-        password: req.body.password,
-        role: req.body.role
+        email: req.body.email,
+        password: req.body.password
     }
 
     try {
@@ -132,7 +131,6 @@ exports.user_update_put = async(req, res) => {
         nombre: body.nombre,
         email: body.email,
         password: body.password,
-        role: body.role
     }
 
     try {

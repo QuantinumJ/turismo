@@ -1,72 +1,71 @@
 <template>
-  <div class="hello" v-if="user!=null">
-    <div v-for=" a in array " :key="a"> 
-    {{a}}
-
+  <div id="home">
+    <div class="panelNavegacion">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">Reservas</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li style="float: right"><a class="active" href="login">Login</a></li>
+      </ul>
     </div>
-
-
+    <div class="busqueda">
+      <input
+        v-model="search"
+        @input="getData"
+        placeholder="Buscar vuelos"
+        class="inputBusqueda"
+      />
+    </div>
+    <div>
+      <div v-for="(vuelo, index) in vuelos" :key="index" class="card-list">
+        <router-link :to="'/reserva/' + vuelo._id">
+          <div class="card vuelo-card vuelo-container vertical-align">
+            <div>Origen: {{ vuelo.origen }}</div>
+            <div>Destino: {{ vuelo.destino }}</div>
+            <div>Fecha salida: {{ formatDate(vuelo.fecha_salida) }}</div>
+            <div>Fecha llegada: {{ formatDate(vuelo.fecha_llegada) }}</div>
+            <div>Precio: {{ vuelo.precio }}€</div>
+            <div class="vuelo-reservar">RESERVAR</div>
+          </div>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
+/*eslint-disable*/
+import axios from "axios";
+import moment from "moment";
 export default {
-  name: 'HelloWorld',
   data: () => {
-        return {
-            user:null,
-            editDocumento: false,
-            documentacion_obj: {},
-            array:["Hola", "mundo"," 21"]
-        }
+    return {
+      vuelos: [],
+      search: "",
+    };
+  },
+  methods: {
+    formatDate: function (date) {
+      return moment(date).format("DD/MM/YYYY");
     },
-    components: {
-        //"confirm": confirm_modal
+    getData: function () {
+      axios
+        .get("http://localhost:3005/vuelos/all", {
+          params: {
+            search: this.search,
+          },
+        })
+        .then((response) => {
+          this.vuelos = response.data;
+          console.log(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-    methods:{
-        getData: function(){
-          this.$http.get("http://localhost:3005/users/all").then(response=>{
-            console.log(response)
-          }).catch(err=>{
-            console.log(err)
-          })
-          
-
-        }
-
-        
-
-
-        // setFile: function (event) {
-        //     this.postobject.documentacion = this.$refs.file.files[0]           
-        // },
-    },
-    beforeMount(){ //Se renderiza antes el html
-   this.getData()
-    },
-    mounted(){  //despues de renderizado
-
-    }  
-}
-
-
-
+  },
+  beforeMount() {
+    this.getData();
+  },
+  mounted() {},
+};
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

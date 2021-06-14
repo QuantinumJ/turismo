@@ -1,5 +1,6 @@
 const usersRouter = require('./users');
 const loginRouter = require('./login');
+const vueloRouter = require('./vuelos')
 
 
 //App export
@@ -8,6 +9,9 @@ module.exports = app => {
     app.use('/users', usersRouter); //User route
 
     app.use('/auth', loginRouter); //Ruta de login
+    app.use('/vuelos', vueloRouter); //Ruta de login
+
+
 
     app.use('/', function(req, res) {
         res.status(200).json({ ok: true, message: "Main page operative" });

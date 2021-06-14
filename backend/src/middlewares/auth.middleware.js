@@ -36,9 +36,9 @@ const verifyLogin = (req, res, next) => {
                         req.user = decoded.user
                         req.userId = decoded.user._id
                         next();
-                        /*} else {
-                            res.status(403).json(false); //csrf token not valid
-                        }*/
+                        /*  } else {
+                              res.status(403).json(false); //csrf token not valid
+                          }*/
                     } else {
                         req.user = decoded.user
                         req.userId = decoded.user._id
@@ -70,13 +70,13 @@ const verifyAdmin = (req, res, next) => {
                 //No valid token/role not correct so unauthorised
             } else {
                 if (req.method === "PUT" || req.method === "POST" || req.method === "DELETE") {
-                    /*if (decoded.csrfToken.indexOf(req.headers['x-xsrf-token']) !== -1) {*/
+                    /* if (decoded.csrfToken.indexOf(req.headers['x-xsrf-token']) !== -1) {*/
                     req.user = decoded.user
                     req.userId = decoded.user._id
                     next();
-                    /*} else {
-                        res.status(403).json(false); //csrf token not valid
-                    }*/
+                    /* } else {
+                         res.status(403).json(false); //csrf token not valid
+                     }*/
                 } else {
                     req.user = decoded.user;
                     req.userId = decoded.user._id
