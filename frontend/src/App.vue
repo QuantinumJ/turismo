@@ -1,13 +1,20 @@
 <template>
   <div id="app">
+    <panel-nav>
+    </panel-nav>
     <router-view />
   </div>
 </template>
 
 <script>
-/*eslint-disable*/
+
+import panelNav from '@/components/PanelNav'
 export default {
   name: "App",
+  components: {
+    panelNav
+    
+  }
 
 };
 </script>
